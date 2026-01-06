@@ -1,0 +1,15 @@
+affinity:
+  key: "kubernetes.io/hostname"
+  operator: In
+  value: controlplane
+image:
+  repository: pullapantangi
+  image: k8s_web
+  tag: v1
+resources:
+  requests:
+    cpu: 100m
+    memory: 100Mi
+  limits:
+    cpu: 500m
+    memory: 500Mi
