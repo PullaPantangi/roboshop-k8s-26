@@ -1,0 +1,35 @@
+affinity:
+  key: "kubernetes.io/hostname"
+  operator: In
+  value: controlplane
+image:
+  repository: pullapantangi
+  image: k8s_web
+  tag: v1
+resources:
+  requests:
+    cpu: 100m
+    memory: 100Mi
+  limits:
+    cpu: 500m
+    memory: 500Mi
+serviceLabels:
+   app_type: web
+   resourceType: service
+selectorLabels:
+   type: frontend
+   resourceType: pod
+service:
+   ports:
+      - name: http
+        port: 80 
+        protocol: TCP
+        targetPort: 8080 
+      - name: https
+        port: 443
+        protocol: TCP
+        targetPort: 8080 
+   type: NodePort
+   nodePort:
+     - 30001
+     - 30002

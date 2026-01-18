@@ -1,0 +1,27 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels: {{- include "my-chart.servicelabels" ( dict "root" . "product" "cpa" ) | nindent 4 }}
+  name: {{ .Release.Name }}-web-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  ports:
+  {{- range .Values.service.ports }}
+  - name: {{ .name | quote }}
+    port: {{ .port }}
+    protocol: {{ .protocol | default "TCP" }}
+    targetPort: {{ .targetPort | default "8080" }}
+#    nodePort: {{ .nodePort | default "30001" }}
+    nodePort: {{ index .Values.service.nodePort 0 }}
+    {{- end}}
+  {{- $servicetypes := list "NodePort" "ClusterIP" }}
+  {{- if has .Values.service.type $servicetypes }}
+  type: {{ .Values.service.type }}
+  {{- else }}
+  {{- fail (printf "value 'service.type' must be 'ClusterIP' or 'NodePort' but got: %s" .Values.service.type ) }}
+  {{- end }}
+  selector:
+   {{- $slabels := .Values.selectorLabels }}
+   type: {{ index $slabels "type" }}
+   resourceType: {{ index $slabels "resourceType" }}
