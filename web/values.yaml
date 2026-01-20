@@ -17,19 +17,21 @@ serviceLabels:
    app_type: web
    resourceType: service
 selectorLabels:
-   type: frontend
-   resourceType: pod
+   type: fronend-web
+#   app: roboshop
+#   type: fronend-web
+#   run: alma
 port_80:
   - name: http
     port: 80 
     protocol: TCP
-    targetPort: 8080 
+    targetPort: 80 
     nodePort: 30001
 port_443:
   - name: https
     port: 443
     protocol: TCP
-    targetPort: 8080
+    targetPort: 80
     nodePort: 30002 
 service:   
   type: NodePort

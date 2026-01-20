@@ -32,4 +32,4 @@ spec:
   selector:
    {{- $slabels := .Values.selectorLabels }}
    type: {{ index $slabels "type" }}
-   resourceType: {{ index $slabels "resourceType" }}
+#   resourceType: {{ index $slabels "resourceType" }}
