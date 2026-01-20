@@ -19,17 +19,19 @@ serviceLabels:
 selectorLabels:
    type: frontend
    resourceType: pod
-service:
-   ports:
-      - name: http
-        port: 80 
-        protocol: TCP
-        targetPort: 8080 
-      - name: https
-        port: 443
-        protocol: TCP
-        targetPort: 8080 
-   type: NodePort
-   nodePort:
-     - 30001
-     - 30002
+port_80:
+  - name: http
+    port: 80 
+    protocol: TCP
+    targetPort: 8080 
+    nodePort: 30001
+port_443:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30002 
+service:   
+  type: NodePort
+https:
+  disabled: true
