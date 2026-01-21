@@ -9,12 +9,12 @@ restartPolicy: Always
 image:
   repo: pullappantangi
   tag: latest
-  name: ecomm_mongo
+  name: robo_user
 labels:
-  app_type: mongodb
+  app_type: user
 imagePullPolicy: always
 service:
   ports:
-  - name: mongo
-    port: 27017
-    targetPort: 27017
+  - name: user
+    port: 8080
+    targetPort: 8080
