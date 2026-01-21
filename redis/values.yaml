@@ -1,0 +1,6 @@
+labels:
+  app_type: redis
+image:
+  repo: pullapantangi
+  name: ecomm_redis
+  tag: latest

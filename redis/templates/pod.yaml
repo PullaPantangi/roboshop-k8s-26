@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app_type: {{ .Values.labels.app_type }}
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  containers:
+  {{- with .Values.image }}
+  - image: {{ .repo }}/{{ .name }}:{{ .tag }}
+  {{- end }}
+    name: redis
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
