@@ -9,9 +9,9 @@ restartPolicy: Always
 image:
   repo: pullapantangi
   tag: latest
-  name: robo_user
+  name: robo_catalogue
 labels:
-  app_type: user
+  app_type: catalogue
 imagePullPolicy: Always
 service:
   ports:

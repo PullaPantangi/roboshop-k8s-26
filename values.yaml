@@ -1,15 +1,20 @@
-affinity:
-  key: "kubernetes.io/hostname"
-  operator: In
-  value: controlplane
-image:
-  repository: pullapantangi
-  image: k8s_web
-  tag: v1
 resources:
+  limits:
+    cpu: 200m
+    memory: 200Mi
   requests:
     cpu: 100m
     memory: 100Mi
-  limits:
-    cpu: 500m
-    memory: 500Mi
+restartPolicy: Always
+image:
+  repo: pullappantangi
+  tag: latest
+  name: robo_user
+labels:
+  app_type: user
+imagePullPolicy: Always
+service:
+  ports:
+  - name: user
+    port: 8080
+    targetPort: 8080

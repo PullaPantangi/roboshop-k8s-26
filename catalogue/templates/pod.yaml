@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app_type: {{ .Values.labels.app_type }}
+spec:
+  containers:
+  - name: {{ .Chart.Name }}
+    image: {{ .Values.image.repo }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
+    imagePullPolicy: {{ .Values.imagePullPolicy }}
+    ports:
+    - containerPort: 8080
+    resources:
+      limits: 
+{{- toYaml .Values.resources.limits | nindent 8 }}
+      requests: 
+{{- toYaml .Values.resources.limits | nindent 8 }}
