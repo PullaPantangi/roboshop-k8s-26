@@ -1,0 +1,20 @@
+resources:
+  limits:
+    cpu: 200m
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+restartPolicy: Always
+image:
+  repo: pullapantangi
+  tag: latest
+  name: ecomm_payment
+labels:
+  app_type: payment
+imagePullPolicy: Always
+service:
+  ports:
+  - name: mysql
+    port: 8080
+    targetPort: 8080
