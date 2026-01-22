@@ -8,4 +8,4 @@ spec:
   ports:
 {{- toYaml .Values.service.ports | nindent 2 }}
   selector:
-    app_type: {{ .Values.labels.appy_type }} 
+    app_type: {{ .Values.labels.app_type }} 

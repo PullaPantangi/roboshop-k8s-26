@@ -12,7 +12,7 @@ image:
   name: robo_user
 labels:
   app_type: user
-imagePullPolicy: always
+imagePullPolicy: Always
 service:
   ports:
   - name: user

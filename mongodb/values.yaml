@@ -7,12 +7,12 @@ resources:
     memory: 100Mi
 restartPolicy: Always
 image:
-  repo: pullappantangi
+  repo: pullapantangi
   tag: latest
   name: ecomm_mongo
 labels:
   app_type: mongodb
-imagePullPolicy: always
+imagePullPolicy: Always
 service:
   ports:
   - name: mongo
