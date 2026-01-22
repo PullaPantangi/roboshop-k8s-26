@@ -1,0 +1,20 @@
+resources:
+  limits:
+    cpu: 200m
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+restartPolicy: Always
+image:
+  repo: pullapantangi
+  tag: latest
+  name: ecomm_mysql
+labels:
+  app_type: mysql
+imagePullPolicy: Always
+service:
+  ports:
+  - name: mysql
+    port: 3306
+    targetPort: 3306

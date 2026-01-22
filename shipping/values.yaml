@@ -1,0 +1,20 @@
+resources:
+  limits:
+    cpu: 200m
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+restartPolicy: Always
+image:
+  repo: pullapantangi
+  tag: latest
+  name: ecomm_ship
+labels:
+  app_type: shipping
+imagePullPolicy: Always
+service:
+  ports:
+  - name: ship
+    port: 8080
+    targetPort: 8080
