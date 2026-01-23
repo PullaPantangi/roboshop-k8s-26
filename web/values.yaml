@@ -37,3 +37,4 @@ service:
   type: NodePort
 https:
   disabled: true
+replicaCount: 1
