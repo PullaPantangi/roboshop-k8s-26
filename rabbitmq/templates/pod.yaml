@@ -12,7 +12,10 @@ spec:
     imagePullPolicy: {{ .Values.imagePullPolicy }}
     ports:
     - containerPort: 5672
-    - containerPort: 15672  
+    - containerPort: 15672
+    env:
+    - name: RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS
+      value: "-rabbit allow_remote_guest_access true"
 #    resources:
 #      limits: 
 {{- /* toYaml .Values.resources.limits | nindent 8 */ -}}

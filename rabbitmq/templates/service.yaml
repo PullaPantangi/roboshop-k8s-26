@@ -16,4 +16,4 @@ spec:
     port: 4369
     targetPort: 4369
   selector:
-    service: rabbitmq
+    app_type: rabbitmq

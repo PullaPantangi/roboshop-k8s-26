@@ -1,7 +1,7 @@
 affinity:
   key: "kubernetes.io/hostname"
   operator: In
-  value: controlplane
+  value: docker-desktop
 image:
   repository: pullapantangi
   image: k8s_web
