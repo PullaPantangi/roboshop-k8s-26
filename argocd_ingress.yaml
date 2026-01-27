@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-ingress
+  namespace: argocd
+  annotations:
+    ingressClassName: nginx
+    # Tell Nginx to redirect all HTTP traffic to HTTPS
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # Tell Nginx the ArgoCD pod is listening on HTTP (Not HTTPS)
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - argo.kantanm.com
+    secretName: tls-secret # The secret we created in Step 1
+  rules:
+  - host: argo.kantanm.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: arogocd-argocd-server
+            port:
+              name: http # Points to the 8080 port
