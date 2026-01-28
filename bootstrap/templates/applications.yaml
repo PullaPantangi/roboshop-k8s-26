@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: git@github.com:PullaPantangi/roboshop-k8s-26.git
     targetRevision: master
-    path: user
+    path: bootstrap
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
