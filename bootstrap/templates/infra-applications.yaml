@@ -1,0 +1,19 @@
+{{- range $product, $env := .Values }}
+{{- range $envkey, $clusters := $env }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $product }}-{{ $envkey }}-user
+  namespace: argocd
+spec:
+  project: {{ $product }}-{{ $envkey }}
+  source:
+    repoURL: git@github.com:PullaPantangi/roboshop-k8s-26.git
+    targetRevision: master
+    path: user
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+{{- end }}
+{{- end }}
+
