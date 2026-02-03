@@ -1,0 +1,5 @@
+cls:
+  fit:
+    clusters:
+      eks-fit-cls-cluster: 
+      version: "1.33"
