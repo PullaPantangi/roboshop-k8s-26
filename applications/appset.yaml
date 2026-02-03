@@ -21,18 +21,18 @@ spec:
       name: '{{env}}-{{product}}-{{path}}'
       namespace: argocd
     spec:
-    project: cls-fit
-    source:
-      repoURL: https://github.com/PullaPantangi/roboshop-k8s-26.git
-      targetRevision: master
-      path: 'applications/{{path}}'
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: '{{path}}'
-    syncPolicy:
-      automated:
-        prune: true
-        selfHeal: true
-      syncOptions:
-        - CreateNamespace=true
+      project: cls-fit
+      source:
+        repoURL: https://github.com/PullaPantangi/roboshop-k8s-26.git
+        targetRevision: master
+        path: 'applications/{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
 
