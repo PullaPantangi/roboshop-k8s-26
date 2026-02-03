@@ -5,7 +5,6 @@ metadata:
   namespace: argocd
 spec:
   project: cls-fit
-
   source:
     repoURL: https://github.com/PullaPantangi/roboshop-k8s-26.git
     targetRevision: master
@@ -14,7 +13,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: mongodb
-
   syncPolicy:
     automated:
       prune: true
