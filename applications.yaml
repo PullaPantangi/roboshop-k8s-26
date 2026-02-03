@@ -1,0 +1,23 @@
+{{- range $product, $env := .Values }}
+{{- range $envkey, $clusters := $env }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $product }}-{{ $envkey }}-mongodb
+  namespace: argocd
+spec:
+  project: {{ $product }}-{{ $envkey }}
+  source:
+    repoURL: https://github.com/PullaPantangi/roboshop-k8s-26.git
+    targetRevision: master
+    path: ,omgodb
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mongodb
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+{{- end }}
+{{- end }}
+
