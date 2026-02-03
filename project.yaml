@@ -1,0 +1,25 @@
+{{- range $product,$env := .Values }}
+{{- range $envkey,$clusters := $env }}
+{{- range $key,$details := $clusters }}
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $product }}-{{ $envkey }}
+  namespace: argocd`
+  # Finalizer ensures that the project isn't deleted until apps are gone
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: "Deployment project for the Engineering Team"
+  sourceRepos:
+    - '*'
+  destinations:
+    - name: local
+      server: https://kubernetes.default.svc
+      namespace: argocd
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*' 
+{{- end }}
+{{- end }}
+{{- end }}
