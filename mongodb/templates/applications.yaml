@@ -1,12 +1,14 @@
-{{- range $product, $env := .Values }}
-{{- range $envkey, $clusters := $env }}
+#{{- range $product, $env := .Values }}
+#{{- range $envkey, $clusters := $env }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ $product }}-{{ $envkey }}-mongodb
+  #name: {{ $product }}-{{ $envkey }}-mongodb
+  name: mongodb
   namespace: argocd
 spec:
   project: {{ $product }}-{{ $envkey }}
+  project: cls-fit
   source:
     repoURL: repoURL: https://github.com/PullaPantangi/roboshop-k8s-26.git
     targetRevision: 1.1.0
@@ -18,6 +20,6 @@ spec:
     automated: {}
     syncOptions:
       - CreateNamespace=true
-{{- end }}
-{{- end }}
+        #{{- end }}
+        #{{- end }}
 
