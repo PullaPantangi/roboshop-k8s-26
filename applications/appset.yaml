@@ -8,7 +8,7 @@ spec:
     - list:
         elements:
           - env: fit
-            prdocut: cls
+            product: cls
             path: mongodb
           - env: fit
             prdocut: cls
