@@ -11,10 +11,10 @@ spec:
             product: cls
             path: mongodb
           - env: fit
-            prdocut: cls
+            product: cls
             path: redis
           - env: fit
-            prdocut: cls
+            product: cls
             path: user
   template:
     metadata:
