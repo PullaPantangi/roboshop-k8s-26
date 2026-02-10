@@ -15,7 +15,29 @@ spec:
             path: redis
           - env: fit
             product: cls
-            path: user
+            path: user 
+          - env: fit
+            product: cls
+            path: cart
+          - env: fit
+            product: cls
+            path: catalogue
+          - env: fit
+            product: cls
+            path: mysql
+          - env: fit
+            product: cls
+            path: payment
+          - env: fit
+            product: cls
+            path: rabbitmq
+          - env: fit
+            product: cls
+            path: shipping
+          - env: fit
+            product: cls
+            path: web
+
   template:
     metadata:
       name: '{{env}}-{{product}}-{{path}}'
