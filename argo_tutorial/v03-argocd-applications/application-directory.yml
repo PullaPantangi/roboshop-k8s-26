@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-directory
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - FailOnSharedResource=true
+      - PruneLast=true
+      - ApplyOutOfSyncOnly=true
+  destination:
+    namespace: directory
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    directory:
+      #exclude: 'service.yml'
+      #include: '{serviceaccount.yml,service.yml}'
+          #      recurse: true
+    path: v03-argocd-applications/directoryOfmanifests
+    repoURL: https://github.com/PullaPantangi/argocd-tutorial.git
+    targetRevision: main
