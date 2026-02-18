@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argo-rollouts-dashboard
+  namespace: argo-rollouts
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: argo-rollouts-manager-role
+rules:
+- apiGroups: ["argoproj.io"]
+  resources: ["rollouts", "experiments", "analysistemplates", "analysisruns"]
+  verbs: ["get", "list", "watch", "update", "patch"] # "patch" allows the Promote button to work
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: argo-rollouts-dashboard-manager-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: argo-rollouts-manager-role
+subjects:
+- kind: ServiceAccount
+  name: argo-rollouts-dashboard
+  namespace: argo-rollouts
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-rollouts-dashboard
+  namespace: argo-rollouts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: argo-rollouts-dashboard
+  template:
+    metadata:
+      labels:
+        app: argo-rollouts-dashboard
+    spec:
+      serviceAccountName: argo-rollouts-dashboard
+      containers:
+      - name: dashboard
+        image: quay.io/argoproj/argo-rollouts:v1.8.4 # Using your image
+        command: ["argo-rollouts", "dashboard"]
+        ports:
+        - containerPort: 3100
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-rollouts-dashboard
+  namespace: argo-rollouts
+spec:
+  type: NodePort
+  selector:
+    app: argo-rollouts-dashboard
+  ports:
+    - protocol: TCP
+      port: 3100
+      targetPort: 3100
+      nodePort: 30080
+
