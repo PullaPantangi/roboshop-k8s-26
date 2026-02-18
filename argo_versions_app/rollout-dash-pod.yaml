@@ -12,6 +12,10 @@ rules:
 - apiGroups: ["argoproj.io"]
   resources: ["rollouts", "experiments", "analysistemplates", "analysisruns"]
   verbs: ["get", "list", "watch", "update", "patch"] # "patch" allows the Promote button to work
+- apiGroups: [""]
+  # ADDED 'configmaps' HERE
+  resources: ["services", "pods", "events", "configmaps"] 
+  verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -45,7 +49,7 @@ spec:
       containers:
       - name: dashboard
         image: quay.io/argoproj/argo-rollouts:v1.8.4 # Using your image
-        command: ["argo-rollouts", "dashboard"]
+        command: ["/bin/rollouts-controller", "dashboard"]
         ports:
         - containerPort: 3100
 ---
