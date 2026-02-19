@@ -1166,7 +1166,12 @@ server:
       seccompProfile:
         type: RuntimeDefault
     enabled: true
-    extensionList: []
+    extensionList: 
+      - name: rollout-extension
+        env:
+          - name: EXTENSION_URL
+            # Check https://github.com/argoproj-labs/rollout-extension/releases for latest
+            value: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.7/extension.tar
     image:
       imagePullPolicy: ""
       repository: quay.io/argoprojlabs/argocd-extension-installer
